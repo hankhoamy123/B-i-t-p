@@ -1,0 +1,142 @@
+CÁCH 1:
+iphone = ['iphone 13', 'iphone 13 pro', 'iphone 13 promax', 'iphone mini']
+price = [1000, 2000, 3000, 4000]
+sell = [0, 0, 0, 0]
+revenue = [0, 0, 0, 0]
+
+def today():   # In ra ngày, tháng, năm hôm nay
+   import datetime
+   date = datetime.date.today()
+   return (date)
+
+def time():  # In ra giờ bán được sản phẩm
+   from datetime import datetime
+   dt = datetime.now()
+   t = dt.time()
+   return(t)
+
+def i_index(vt):
+   return (iphone.index(vt))
+
+def content():  # Nội dung khai báo trong 1 lần bán được sản phẩm
+   a = str(input('Bán được mẫu điện thoại: '))    # Yêu cầu nhập đúng tên điện thoại như trong list iphone
+   sell[i_index(a)] = + int(input('Số lượng: '))
+   return(sell)
+
+def exception():
+   try:
+       content()
+   except:    # Khối lệnh xử lý ngoại lệ khi khai báo chưa đúng tên sản phẩm bán được
+       while True: # Lúc này sẽ cho nhập lại tên, số lượng đến khi thao tác đúng thì qua bước tiếp theo
+           print('Vui lòng nhập đúng định dạng tên và số lượng điện thoại.')
+           content()
+           break
+
+def sells():
+   print('Vào lúc: ',time())
+   exception()
+   return (sell)
+
+def sale():   # Khối lệnh cập nhật trạng thái cửa hàng: Có thêm lượt bán hàng mới hay Kết thúc hoạt động bán hàng hôm nay
+   while True:
+       m = str(input('Thêm Hay Dừng: ')) # Chỉ nhận nhập thêm / dừng
+       m = m.upper()    # Không phân biệt bạn nhập chữ hoa hay chữ thường
+       if m == 'DỪNG':  # DỪNG: kết thúc bán hàng hôm nay
+           break
+       elif m == 'THÊM':  # THÊM: tiếp tục bổ sung danh sách sản phẩm bán được hôm nay
+           sells()
+           continue
+       else:
+           print('Nhập sai lệnh, vui lòng khai báo lại')   # Nhập sai yêu cầu thì sẽ cho nhập lại đến khi đúng.
+           continue
+   return
+
+def Total_Revenue():  # Tính tổng doanh thu của ngày hôm nay
+   for i in range(len(iphone)):
+       revenue[i] = price[i] * sell[i]
+   return (sum(revenue))
+
+
+print('BẢNG DOANH SỐ ngày',today())
+sale()
+print('Doanh số của ngày hôm nay: ', Total_Revenue())
+
+
+# cách 2
+p=["ip13","ip13pro","ip13promax", "ipmini"]
+gia=[20 ,30, 40 ,10]
+ban=[]
+banle=[]
+dt=[]
+for i in range (1,len(sp)+1):
+   print(" Gõ ", i , " để chọn nhập số lượng sản phẩm " + sp[i-1])
+print (" Gõ  0 nếu bạn muốn tính tổng doanh thu")
+a1=[]
+a2=[]
+a3=[]
+a4=[]
+def chon():
+   c = 1
+   while c!= 0:
+       c = int(input(" Chọn loại hàng muốn nhập số lượng: "))
+       if c==1:
+           print(" Nhập số lượng bán được của "+ sp[0] + " : ",end='')
+           b=int(input())
+           banle.append([sp[0] , b])
+           a1.append(b)     #thêm số lượng từng loại vào từng mảng
+       elif c==2:
+           print(" Nhập số lượng bán được của " + sp[1] + " : ",end='')
+           b=int(input())
+           banle.append([sp[1], b])
+           a2.append(b)
+       elif c == 3:
+           print(" Nhập số lượng bán được của " + sp[2] + " : ",end='')
+           b = int(input())
+           banle.append([sp[2] , b])
+           a3.append(b)
+       elif c==4:
+           print(" Nhập số lượng bán được của " + sp[3] + " : ",end='')
+           b = int(input())
+           banle.append([sp[3], b])
+           a4.append(b)
+       else :
+           print("Mời bạn nhập lại")
+def tonghang():
+   t1=0
+   for i in range (len(a1)):
+       t1 += int(a1[i])
+   ban.append([sp[0],t1]) # tổng số lượng các loại vào một mảng
+
+   t2=0
+   for i in range (len(a2)):
+       t2 += int(a2[i])
+   ban.append([sp[1],t2])
+
+   t3=0
+   for i in range (len(a3)):
+       t3 += int(a1[i])
+   ban.append([sp[2],t3])
+
+   t4=0
+   for i in range (len(a4)):
+       t4 += int(a1[i])
+   ban.append([sp[3],t4])
+   print("Tổng số lượng bán được : ", ban)
+def doanhthu():
+   doanhthu=0
+   for i in range(len(ban)): # ở đâu i là số hàng, tương ứng với loại ip (4)
+       for j in range (len(ban[i])): #j là phần tử của list con (2)
+           if type(ban[i][j]) == int:
+               doanhthu=int(ban[i][j]) * int(gia[i])
+               dt.append(doanhthu)
+   print(ban[2])
+   print('Tổng doanh thu là : ',sum(dt),"000000" +  " VNĐ ")
+
+print(chon())
+print(tonghang())
+print(doanhthu())
+
+
+
+
+
