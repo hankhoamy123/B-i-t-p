@@ -1,0 +1,107 @@
+Cách 1:
+def nhập_tên (danh_sách_tên):
+   danh_sách_tên.append(input('Tên: '))
+   return(danh_sách_tên)
+def nhập_điểm_rl (danh_sách_điểm_rèn_luyện):
+   danh_sách_điểm_rèn_luyện.append(int(input('Điểm rèn luyện: ')))
+   return(danh_sách_điểm_rèn_luyện)
+def nhâp_điểm_môn(môn_học,danh_sách_điểm):
+   a = []
+   for i in môn_học:
+       print('Điểm môn',i,end= ': ')
+       a.append(float(input()))
+   danh_sách_điểm.append(a)
+   return (danh_sách_điểm)
+def điểm_xét_HB(số_thứ_tự,điểm_môn_học,điểm_rèn_luyện,tín_chỉ,môn_học,điểm_xét):
+   a = 0
+   for i in range(len(môn_học)):
+       a += điểm_môn_học[số_thứ_tự][i] * tín_chỉ[i]
+   b = (a / sum(tín_chỉ)) + 0.2 * điểm_rèn_luyện[số_thứ_tự]
+   print('Điểm xét học bổng: ',b)
+   điểm_xét.append(b)
+   return (điểm_xét)
+def sinh_viên(số_thứ_tự):
+   print('Sinh viên thứ ',số_thứ_tự + 1,' gồm:')
+   nhập_tên(tên)
+   nhập_điểm_rl(điểm_rl)
+   nhâp_điểm_môn(môn,điểm_môn)
+   điểm_xét_HB(số_thứ_tự, điểm_môn,điểm_rl, tín_chỉ, môn, điểm_HB)
+   return
+def nhập_tất_cả_thông_tin(số_lượng):
+   for i in range(số_lượng):
+       sinh_viên(i)
+   return()
+def vị_trí(lấy):
+   return(lấy.index(max(lấy)))
+def xét_HB(số_lượng,điểm_xét,tên,ds):
+   for i in range(số_lượng):
+       ds.append(tên[vị_trí(điểm_xét)])
+       tên.remove(tên[vị_trí(điểm_xét)])
+       điểm_xét.remove(max(điểm_xét))
+   return(ds)
+
+môn = ['TCC','KTVM']
+tín_chỉ = [1,2]
+tên = []
+điểm_rl = []
+điểm_môn = []
+điểm_HB = []
+ds = []
+n = int(input('Số lượng sinh viên cần xem xét: '))
+nhập_tất_cả_thông_tin(n)
+m = int(input('Số lượng sinh viên được trao học bổng: '))
+print('Danh sách sinh viên nhận học bổng', xét_HB (m, điểm_HB, tên, ds))
+
+
+CÁCH 2
+
+def nhập_tên (số_lượng_sv):
+   for i in range(số_lượng_sv):
+       print('Nhập tên sinh viên thứ ',i+1,end= ': ')
+       a = input()
+       tên.append(a)
+   return(tên)
+def nhập_điểm_rl (số_lượng_sv,điểm_rl):
+   for i in range(số_lượng_sv):
+       print('Sinh viên thứ ', i+1)
+       điểm_rl.append(int(input('Điểm rèn luyện là ')))
+   return(điểm_rl)
+def diemmon(số_lượng_sv,môn,điểm_môn):
+   for i in range(số_lượng_sv):
+       print('Sinh viên thứ ', i+1)
+       a = []
+       for y in range (len(môn)):
+           print('Nhập điểm môn',môn[y])
+           a.append(float(input()))
+       điểm_môn.append(a)
+   return (điểm_môn)
+def diemHB(diemmon,số_lượng_sv,tín_chỉ,mon,drl):
+   for x in range(số_lượng_sv):
+       a = []
+       for y in range(len(mon)):
+           a.append(diemmon[x][y] * tín_chỉ[y])
+       x = (sum(a) / sum(tín_chỉ)) + 0.2* drl[x]
+       điểm_xét_hb.append(x)
+   return (điểm_xét_hb)
+
+def xét_HB(u,HB,tensv):
+   for i in range(u):
+       ds.append(tensv[HB.index(max(HB))])
+       tensv.remove(tensv[HB.index(max(HB))])
+       HB.remove(max(HB))
+   return(ds)
+
+môn = ['TCC','KTVM']
+tín_chỉ = [1,2]
+tên = []
+điểm_rl = []
+điểm_môn = []
+điểm_xét_hb = []
+ds = []
+n = int(input('nhập số lượng sinh viên: '))
+print(nhập_tên(n))
+print('điểm rèn luyện sinh viên', nhập_điểm_rl(n,điểm_rl))
+print('điểm các sinh viên', diemmon(n,môn,điểm_môn))
+print('điểm xét học bổng',diemHB(điểm_môn,n,tín_chỉ,môn,điểm_rl))
+u = int(input('Số sinh viên được nhận học bổng: '))
+print('Sinh viên nhận học bổng', xét_HB(u,điểm_xét_hb,tên))
