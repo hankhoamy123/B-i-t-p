@@ -1,0 +1,61 @@
+#cách 1
+diem=[]
+tenmon = ["Toán" ,"Lý","Hoá","Sinh","Anh", "Văn","Sử","Địa"]
+khoiA=["Toán","Lý","Hoá"]
+khoiB=["Toán","Hoá","Sinh"]
+khoiC=["Văn","Sử","Địa"]
+khoiD=["Toán","Văn","Anh"]
+dskhoi = [khoiA ,  khoiB  ,  khoiC  ,  khoiD  ]
+def nhapdiem():
+    for i in range (len(tenmon)):
+        a = float(input("Nhập điểm môn " + tenmon[i] + " : "))
+        diem.append(a)
+    return(diem)
+print(nhapdiem())
+def laydiem(mon):
+    return int(diem[tenmon.index(mon)])
+def tongdiem(khoi):
+    return (laydiem(khoi[0])*2 + laydiem(khoi[1]) + laydiem(khoi[2]))
+print()
+a = 0
+max = 0
+j=0
+for i in range (len(dskhoi)):
+    a = tongdiem(dskhoi[i])
+    if a > max :
+        max = a
+        j = i
+print(" Khối phù hợp với bạn là : ", dskhoi[j], ' với số điểm là ', max )
+
+
+#cách 2
+def nhapdiem():
+   for i in range(len(tenmon)):
+       print('Nhập điểm môn ',tenmon[i], end=' ')
+       dsdiem.append(float(input()))
+   return(dsdiem)
+def laydiem(mon):
+   return float(dsdiem[tenmon.index(mon)])
+def diemtungkhoi(dskhoi):
+   for khoi in dskhoi:
+       dsdiemkhoi.append(laydiem(khoi[0])*2 + laydiem(khoi[1]) + laydiem(khoi[2]))
+   return(dsdiemkhoi)
+def diemmax(ds):
+   max = dsdiemkhoi[0]
+   for i in range(1,len(ds)):
+       if max < ds[i]:
+           max = ds[i]
+   return (dskhoi[dsdiemkhoi.index(max)])
+
+tenmon = ["Toan","Ly","Hoa","Sinh","Su","Dia","Van","Anh"]
+dsdiem = []
+khoiA = ["Toan","Ly","Hoa"]
+khoiB = ["Sinh","Toan","Hoa"]
+khoiC = ["Van","Su","Dia"]
+khoiD = ["Anh","Toan","Van"]
+dskhoi = [khoiA,khoiB,khoiC,khoiD]
+dsdiemkhoi = []
+
+nhapdiem()
+print('Điểm các khối của bạn là: ',diemtungkhoi(dskhoi))
+print('Khối bạn nên học là: ',diemmax(dsdiemkhoi))
