@@ -105,3 +105,52 @@ print('điểm các sinh viên', diemmon(n,môn,điểm_môn))
 print('điểm xét học bổng',diemHB(điểm_môn,n,tín_chỉ,môn,điểm_rl))
 u = int(input('Số sinh viên được nhận học bổng: '))
 print('Sinh viên nhận học bổng', xét_HB(u,điểm_xét_hb,tên))
+
+#Cách 3: 
+dsten=[]
+mon=["KTVM","TTHCM","GTN"]
+tc=[ 3 , 2 , 3 ]
+diem=[]
+tong = 0
+dhb=[]
+dshb=[ ]
+a=int(input(" Số học sinh đăng ký xét học bổng : "))
+def nhapten():
+        for i in range (1,a+1):
+            print("Nhập tên học sinh thứ ",i, " : " ,end='')
+            b=input()
+            dsten.append(b)
+def nhapdiem(dsten,mon):
+    for i in range (len(dsten)):
+        print(" -  Nhập điểm của sinh viên ", dsten[i])
+        z=[]
+        for j in range (len(mon)):
+            print(" Điểm môn " + mon[j]+ ":",end= '')
+            k=float(input())
+            z.append(k)
+        r = float(input(" Điểm rèn luyện : "))
+        z.append(r)
+        diem.append(z)
+
+def diemhb(dsten,mon,diem):
+    a=0
+    b=0
+    for i in range (len(dsten)):
+        for j in range (len(mon)):
+            a= (diem[i][j]*tc[j]) / sum(tc)
+            b= a + 0.2*diem[i][-1]
+        dhb.append(b)
+
+def hocbong(a,dhb,dsten):
+    a=int(input("Số học bổng được trao: "))
+    for i in range(a):
+        dshb.append(dsten[dhb.index(max(dhb))])
+        dsten.remove(dsten[dhb.index(max(dhb))])
+        dhb.remove(max(dhb))
+    print ("Danh sach hoc sinh nhan hoc bong: ", dshb)
+
+print(nhapten())
+print(nhapdiem(dsten,mon))
+print(diemhb(dsten,mon,diem))
+print(hocbong(a,dhb,dsten))
+
